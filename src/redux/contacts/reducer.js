@@ -28,9 +28,9 @@ const error = createReducer("", {
 });
 
 export default combineReducers({
-  itemsReducer,
+  items: itemsReducer,
   error,
-  filterReducer,
+  filter: filterReducer,
 });
 
 // const initialState = {

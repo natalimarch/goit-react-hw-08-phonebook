@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Filter.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import filterPhonebook from "../../redux/contacts/actions";
+import actions from "../../redux/contacts/actions";
 import { getFilter } from "../../redux/contacts/selectors";
 
 const Filter = () => {
@@ -10,7 +10,7 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   const onChange = ({ target }) => {
-    dispatch(filterPhonebook(target.value));
+    dispatch(actions.filterPhonebook(target.value));
   };
   return (
     <>
