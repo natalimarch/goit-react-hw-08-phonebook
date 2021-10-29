@@ -6,6 +6,8 @@
 
 .Form {
   display: flex;
+  justify-content: center;
+  margin: 0 auto;
   width: 250px;
   padding: 20px;
 }
