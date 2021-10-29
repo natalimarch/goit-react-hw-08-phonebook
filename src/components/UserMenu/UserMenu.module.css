@@ -12,3 +12,12 @@
   font-weight: 700;
   margin-right: 12px;
 }
+
+.Btn {
+  background-color: blueviolet;
+  color: #000;
+}
+
+.Btn:hover {
+  color: #fff;
+}

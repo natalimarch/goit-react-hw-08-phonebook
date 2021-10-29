@@ -1,4 +1,4 @@
-export const fields = {
+export const fieldsRegister = {
   name: {
     name: "name",
     type: "name",

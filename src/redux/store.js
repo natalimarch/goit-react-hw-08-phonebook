@@ -1,10 +1,25 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { reducer } from "./contacts";
+import { authReducer } from "./auth";
 
-import contactsReducer from "./contacts/reducer";
-
-import authReducer from "./auth/auth-reducer";
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
 
 const authPersistConfig = {
   key: "auth",
@@ -14,9 +29,44 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    contacts: contactsReducer,
     auth: persistReducer(authPersistConfig, authReducer),
+    contacts: reducer,
   },
+  middleware,
+  devTools: process.env.NODE_ENV === "development",
 });
 
 export const persistor = persistStore(store);
+
+// import { configureStore } from "@reduxjs/toolkit";
+// import {
+//   persistStore,
+//   persistReducer,
+//   FLUSH,
+//   REHYDRATE,
+//   PAUSE,
+//   PERSIST,
+//   PURGE,
+//   REGISTER,
+// } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
+// import contactsReducer from "./contacts/reducer";
+// import authReducer from "./auth/auth-reducer";
+// const authPersistConfig = {
+//   key: "auth",
+//   storage,
+//   whitelist: ["token"],
+// };
+// export const store = configureStore({
+//   reducer: {
+//     contacts: contactsReducer,
+//     auth: persistReducer(authPersistConfig, authReducer),
+//   },
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     }),
+// });
+// export const persistor = persistStore(store);

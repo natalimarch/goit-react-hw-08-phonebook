@@ -1,0 +1,14 @@
+.wrapperBox {
+  display: block;
+  width: 1024px;
+  margin: auto;
+  background-color: #ffc0cb;
+}
+
+.wrapperProgress {
+  background-color: #ffc0cb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

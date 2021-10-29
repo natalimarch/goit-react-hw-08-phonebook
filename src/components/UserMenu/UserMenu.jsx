@@ -2,14 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./UserMenu.module.css";
 import defaultAvatar from "./default-avatar.png";
 
-import authOperations from "../../redux/auth/auth-operations";
-import { authUserName } from "../../redux/auth/auth-selectors";
-// import Phonebook from "../Phonebook/Phonebook";
-import { NavLink } from "react-router-dom";
+import { authSelectors, authOperations } from "../../redux/auth";
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const name = useSelector(authUserName);
+  const name = useSelector(authSelectors.getUsername);
   const avatar = defaultAvatar;
 
   return (
@@ -17,15 +14,14 @@ const UserMenu = () => {
       <div className={styles.Container}>
         <img src={avatar} alt="#" className={styles.Avatar} />
         <span className={styles.Name}>Добро пожаловать, {name}</span>
-        <button type="button" onClick={() => dispatch(authOperations.logout())}>
+        <button
+          type="button"
+          className={styles.Btn}
+          onClick={() => dispatch(authOperations.logOut())}
+        >
           Выйти
         </button>
       </div>
-      <nav>
-        <NavLink exact to="/contacts" className={styles.NavLink}>
-          Contacts
-        </NavLink>
-      </nav>
     </>
   );
 };

@@ -1,9 +1,13 @@
-const HomePage = () => {
-  return (
-    <>
-      <div>Добро пожаловать</div>
-    </>
-  );
-};
+import styles from "./HomePage.module.css";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
-export default HomePage;
+const HomeView = () => (
+  <Box className={styles.container}>
+    {/* <Typography variant="h2" component="div" className={styles.title}>
+      Phonebook
+    </Typography> */}
+  </Box>
+);
+
+export default HomeView;
